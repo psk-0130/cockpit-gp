@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 앱 아이콘 전경: 위에서 내려다본 빨간 F1 머신. 적응형 아이콘 안전 영역(지름 66) 안에 들어가게 그렸습니다. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 삼성 런처처럼 아이콘을 꽉 채워 자르는 경우에도 날개가 테두리에 닿지 않게 조금 줄여서 가운데에 둡니다 -->
+    <group android:scaleX="0.82" android:scaleY="0.82" android:pivotX="54" android:pivotY="57" android:translateY="-3">
+    <!-- 뒤로 흐르는 속도선 -->
+    <path android:strokeColor="#99F3F2EE" android:strokeWidth="2" android:strokeLineCap="round"
+        android:pathData="M44,83v5M54,83v6M64,83v5" />
+    <!-- 서스펜션 -->
+    <path android:strokeColor="#F3F2EE" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M43,37L50,40M43,42L50,43M65,37L58,40M65,42L58,43M43,65L46,64M65,65L62,64" />
+    <!-- 타이어 (노란 사이드월) -->
+    <path android:fillColor="#0A0B0D" android:strokeColor="#FFC83D" android:strokeWidth="1.2"
+        android:pathData="M35,33h8v11h-8zM65,33h8v11h-8zM33,59h10v14h-10zM65,59h10v14h-10z" />
+    <!-- 프런트 윙 -->
+    <path android:fillColor="#E10600" android:pathData="M37,26h34v4h-34z" />
+    <path android:fillColor="#F3F2EE" android:pathData="M35,25h2v7h-2zM71,25h2v7h-2z" />
+    <!-- 노즈 -->
+    <path android:fillColor="#E10600" android:pathData="M51,29L57,29L59,47L49,47Z" />
+    <!-- 사이드포드 -->
+    <path android:fillColor="#B00500" android:pathData="M46,53L39,56L39,66L45,69ZM62,53L69,56L69,66L63,69Z" />
+    <!-- 차체 -->
+    <path android:fillColor="#E10600" android:pathData="M49,46L59,46L63,54L64,66L60,75L48,75L44,66L45,54Z" />
+    <!-- 센터 스트라이프 -->
+    <path android:fillColor="#F3F2EE" android:pathData="M53,29h2v19h-2zM53,63h2v12h-2z" />
+    <!-- 콕핏과 헤일로 -->
+    <path android:fillColor="#0A0B0D" android:pathData="M50.5,52h7v10h-7z" />
+    <path android:strokeColor="#F3F2EE" android:strokeWidth="1.6" android:strokeLineCap="round"
+        android:pathData="M50,53Q54,46 58,53" />
+    <path android:fillColor="#FFC83D" android:pathData="M54,54.5a2.8,2.8 0,1 1,0 5.6a2.8,2.8 0,1 1,0 -5.6z" />
+    <!-- 리어 윙 -->
+    <path android:fillColor="#E10600" android:pathData="M40,75h28v6h-28z" />
+    <path android:fillColor="#F3F2EE" android:pathData="M38,74h2v8h-2zM68,74h2v8h-2z" />
+    </group>
+</vector>

@@ -1,0 +1,30 @@
+# ---- Android: build output and machine-specific settings ----
+CockpitGP-Android/.gradle/
+CockpitGP-Android/build/
+CockpitGP-Android/app/build/
+CockpitGP-Android/.idea/
+CockpitGP-Android/.kotlin/
+CockpitGP-Android/captures/
+CockpitGP-Android/local.properties
+*.iml
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# ---- Server: real player records and logs ----
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.log
+node_modules/
+
+# ---- Local-only files ----
+.claude/
+app-test.html
+server/server.py
+monza-cockpit.html
+.DS_Store
+Thumbs.db
+desktop.ini

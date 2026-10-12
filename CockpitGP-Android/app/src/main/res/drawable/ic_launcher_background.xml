@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 앱 아이콘 배경: 어두운 아스팔트 위 은은한 체커기 무늬 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:fillColor="#15181D" android:pathData="M0,0h108v108h-108z" />
+    <path android:fillColor="#1FF3F2EE"
+        android:pathData="M0,0h12v12h-12zM24,0h12v12h-12zM48,0h12v12h-12zM72,0h12v12h-12zM96,0h12v12h-12zM12,12h12v12h-12zM36,12h12v12h-12zM60,12h12v12h-12zM84,12h12v12h-12zM0,24h12v12h-12zM24,24h12v12h-12zM48,24h12v12h-12zM72,24h12v12h-12zM96,24h12v12h-12zM12,36h12v12h-12zM36,36h12v12h-12zM60,36h12v12h-12zM84,36h12v12h-12zM0,48h12v12h-12zM24,48h12v12h-12zM48,48h12v12h-12zM72,48h12v12h-12zM96,48h12v12h-12zM12,60h12v12h-12zM36,60h12v12h-12zM60,60h12v12h-12zM84,60h12v12h-12zM0,72h12v12h-12zM24,72h12v12h-12zM48,72h12v12h-12zM72,72h12v12h-12zM96,72h12v12h-12zM12,84h12v12h-12zM36,84h12v12h-12zM60,84h12v12h-12zM84,84h12v12h-12zM0,96h12v12h-12zM24,96h12v12h-12zM48,96h12v12h-12zM72,96h12v12h-12zM96,96h12v12h-12z" />
+</vector>

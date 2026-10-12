@@ -1,0 +1,26 @@
+<!--
+  app/src/main/AndroidManifest.xml 에 아래 표시된 부분만 추가/수정하세요.
+  (파일 전체를 바꾸지 말고, 기존 내용에 끼워 넣기)
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ① <application> 태그 위에 추가: 서버 통신, 충돌 시 진동 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- ② 기존 <application ...> 태그 안에 이 속성 하나 추가:
+         학교 서버가 https가 아닌 http 주소라서 필요합니다 -->
+    <application
+        android:usesCleartextTraffic="true"
+        ... 기존 속성들은 그대로 ... >
+
+        <!-- ③ 기존 <activity android:name=".MainActivity" ...> 태그에 아래 두 속성 추가:
+             가로 화면 고정, 화면 회전 시 게임이 다시 시작되지 않게 -->
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
+            ... 기존 속성들은 그대로 ... >
+        </activity>
+    </application>
+</manifest>
