@@ -247,7 +247,7 @@ body.inmenu .hud,body.inmenu #touch{display:none!important}
     <div class="sec">
       <div class="lbl">1인칭 레이싱 · 실제 서킷 4곳</div>
       <h1 class="hero">Cockpit <span>GP</span></h1>
-      <p>운전석에 앉아 몬차, 스파, 레드불링, 인터라고스를 달립니다. 혼자 기록에 도전하거나, AI 7대 또는 친구들과 실시간으로 레이스를 펼치세요.</p>
+      <p>운전석에 앉아 몬차, 스파, 레드불링, 인터라고스를 달립니다. 혼자 기록에 도전하거나 AI 7대와 레이스를 펼치세요. 기록 서버에 연결하면 친구들과 실시간 레이스도 할 수 있습니다.</p>
     </div>
     <div class="tracklist num">MONZA · SPA-FRANCORCHAMPS · RED BULL RING · INTERLAGOS</div>
     <div class="titleActions">
@@ -266,7 +266,7 @@ body.inmenu .hud,body.inmenu #touch{display:none!important}
       <dl>
         <dt>타임 트라이얼</dt><dd>트랙에 혼자 나가 가장 빠른 랩에 도전합니다. 출발선을 처음 지나는 순간부터 랩 타임이 잽니다. 최고 기록은 서킷과 차량 조합마다 따로 저장됩니다.</dd>
         <dt>AI 레이스</dt><dd>AI 드라이버 7대와 8대가 그리드에서 함께 출발합니다. 플레이어는 맨 뒤(8번 그리드)에서 출발하며, 랩 수(3·5·10)와 AI 난이도(쉬움·보통·어려움)를 고를 수 있습니다.</dd>
-        <dt>멀티플레이</dt><dd>같은 기록 서버에 연결한 친구들과 최대 8명이 실시간으로 달립니다. 한 명이 방을 만들어 4자리 방 코드를 알려 주면 나머지가 코드로 참가하고, 방장이 시작하면 모두의 빨간불이 동시에 꺼집니다. 서킷·차량·랩 수는 방장이 정하며, 플레이어끼리는 부딪히지 않고 통과합니다.</dd>
+        <dt>멀티플레이</dt><dd>(기록 서버에 연결했을 때만 나타납니다) 같은 기록 서버에 연결한 친구들과 최대 8명이 실시간으로 달립니다. 한 명이 방을 만들어 4자리 방 코드를 알려 주면 나머지가 코드로 참가하고, 방장이 시작하면 모두의 빨간불이 동시에 꺼집니다. 서킷·차량·랩 수는 방장이 정하며, 플레이어끼리는 부딪히지 않고 통과합니다.</dd>
       </dl>
     </section>
 
@@ -1077,7 +1077,15 @@ function seg(el,items,key,after){
 seg($('optCar'),Object.entries(CARS).map(([k,c])=>[k,c.name,c.sub]),'car');
 // laps apply to AI races and multiplayer; AI difficulty only to AI races
 function modeUI(){$('raceOpts').hidden=cfg.mode==='tt';$('optDiff').parentElement.hidden=cfg.mode!=='race';$('startBtn').textContent=cfg.mode==='multi'?'멀티플레이 로비':'레이스 시작';}
-seg($('optMode'),[['tt','타임 트라이얼','혼자 달리며 랩 기록 경신'],['race','AI 레이스','AI 7대와 그리드 출발'],['multi','멀티플레이','친구들과 실시간 레이스']],'mode',modeUI);
+// Multiplayer needs a reachable record server: hidden with no server address (the GitHub Pages demo), and on an
+// https page pointing at an http server, which the browser would block anyway.
+const mpAvailable=()=>!!net.url&&!(location.protocol==='https:'&&/^http:/i.test(net.url));
+function renderModeSeg(){
+  if(cfg.mode==='multi'&&!mpAvailable())cfg.mode='race';
+  const items=[['tt','타임 트라이얼','혼자 달리며 랩 기록 경신'],['race','AI 레이스','AI 7대와 그리드 출발']];
+  if(mpAvailable())items.push(['multi','멀티플레이','친구들과 실시간 레이스']);
+  seg($('optMode'),items,'mode',modeUI);modeUI();
+}
 seg($('optLaps'),[[3,'3랩'],[5,'5랩'],[10,'10랩']],'laps');
 seg($('optDiff'),Object.entries(DIFF).map(([k,d])=>[k,d.label]),'diff');
 seg($('optAssist'),[[true,'켬','TC · ABS · 자세 제어'],[false,'끔','미끄러짐을 직접 제어']],'assist');
@@ -1323,7 +1331,8 @@ const setStat=(el,msg,cls)=>{el.textContent=msg;el.className='netstat'+(cls?' '+
 const netIdle=()=>setStat($('netStat'),net.url?`${net.url} 에 기록을 저장합니다${net.name?'':' · 이름을 입력해야 저장됩니다'}`:'서버 주소를 비워 두면 기록은 이 기기에만 저장됩니다.');
 netIdle();
 $('netName').addEventListener('input',()=>{net.name=$('netName').value.trim().slice(0,20);saveNet();netIdle();});
-$('netUrl').addEventListener('input',()=>{net.url=$('netUrl').value.trim().replace(/\/+$/,'');saveNet();netIdle();});
+$('netUrl').addEventListener('input',()=>{net.url=$('netUrl').value.trim().replace(/\/+$/,'');saveNet();netIdle();renderModeSeg();});
+renderModeSeg();
 async function api(path,body){
   if(!net.url)throw new Error('서버 주소가 없습니다');
   const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),6000);
