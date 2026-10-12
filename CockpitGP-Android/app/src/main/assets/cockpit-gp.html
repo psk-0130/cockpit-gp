@@ -631,7 +631,8 @@ function applyLook(){
   else{renderer.toneMapping=look.adv?THREE.ACESFilmicToneMapping:THREE.NoToneMapping;renderer.toneMappingExposure=p.exp;renderer.outputEncoding=look.adv?THREE.sRGBEncoding:THREE.LinearEncoding;}
   // colour textures follow the output: sRGB when tone mapped, linear on 낮음 (exactly the old look)
   const enc=look.adv?THREE.sRGBEncoding:THREE.LinearEncoding;
-  [MAT.carbon.map,MAT.carbonFine.map,F1.tex,GT.tex,GT.screenTex,mirrorRT.texture].forEach(t=>{if(t&&t.encoding!==enc){t.encoding=enc;t.needsUpdate=true;}});
+  [MAT.carbon.map,MAT.carbonFine.map,F1.tex,GT.tex,GT.screenTex].forEach(t=>{if(t&&t.encoding!==enc){t.encoding=enc;t.needsUpdate=true;}});
+  mirrorRT.texture.encoding=enc;   // a render target has no image to re-upload: never flag it needsUpdate
   cockpitRoot.traverse(o=>{if(o.isMesh)o.castShadow=look.shadow;});
   scene.traverse(o=>{if(!o.material)return;(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{if(m.isMeshStandardMaterial)m.envMapIntensity=p.envI;m.needsUpdate=true;});});
   refreshCars();
