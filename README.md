@@ -2,6 +2,12 @@
 
 **실제 F1 서킷을 운전석 시점으로 달리는 1인칭 레이싱 게임.** 웹(Three.js)으로 만든 게임을 안드로이드 앱으로 감싸고, Node.js 서버와 SQLite로 기록·순위·실시간 멀티플레이를 처리합니다.
 
+### ▶ [브라우저에서 바로 플레이](https://psk-0130.github.io/cockpit-gp/)
+
+[게임](https://psk-0130.github.io/cockpit-gp/cockpit-gp.html) · [그래픽 랩](https://psk-0130.github.io/cockpit-gp/graphics-preview.html) · [모델 랩](https://psk-0130.github.io/cockpit-gp/car-model-lab.html)
+
+> 웹 데모에서는 타임 트라이얼과 AI 레이스를 할 수 있습니다. 기록 저장·순위·멀티플레이는 [기록 서버](docs/SETUP.md)를 직접 실행해야 동작합니다.
+
 ```
 [안드로이드 앱 / 브라우저]                         [리눅스 서버]
  WebView ─ cockpit-gp.html ── HTTP (JSON) ─────▶ server.js ── cockpitgp.db (SQLite)
@@ -53,6 +59,7 @@
 
 | 경로 | 내용 |
 |---|---|
+| `index.html` | GitHub Pages 시작 페이지 (게임·데모 링크) |
 | `cockpit-gp.html` | 게임 본체 (브라우저에서 바로 실행 가능) |
 | `server/server.js` | 기록 API + 멀티플레이 서버 |
 | `CockpitGP-Android/` | 안드로이드 스튜디오 프로젝트 (게임은 `app/src/main/assets/`) |
